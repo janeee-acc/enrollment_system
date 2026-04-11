@@ -360,8 +360,13 @@ body {
   vertical-align: middle;
 }
 
+/* Fill entire row with violet background */
+.enrolled-table tbody tr {
+  background: #e8e4f5;
+}
+
 .enrolled-table tbody tr:hover {
-  background: #f8f9fa;
+  background: #ddd5f0;
 }
 
 .enrolled-table tbody tr:last-child td {
