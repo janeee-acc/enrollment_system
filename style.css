@@ -333,7 +333,7 @@ body {
   background: white;
   border-radius: 8px;
   border: 1px solid #ddd;
-  overflow: visible;
+  overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -341,7 +341,6 @@ body {
   width: 100%;
   border-collapse: collapse;
   background: white;
-  table-layout: fixed;
 }
 
 /* Desktop styling */
@@ -354,7 +353,6 @@ body {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  word-break: break-word;
 }
 
 .enrolled-table td {
@@ -380,21 +378,18 @@ body {
   font-weight: 700;
   color: #2A0A4A;
   font-size: 15px;
-  word-wrap: break-word;
 }
 
 .enrolled-course-title {
   color: #333;
   font-weight: 500;
   line-height: 1.4;
-  word-wrap: break-word;
 }
 
 .enrolled-date {
   color: #666;
   font-size: 13px;
   font-weight: 500;
-  word-wrap: break-word;
 }
 
 .drop-btn {
@@ -419,33 +414,14 @@ body {
 
 /* Desktop - ensure ACTION column is visible */
 @media (min-width: 1025px) {
-  .enrolled-table {
-    table-layout: auto;
-  }
-
-  .enrolled-table th:nth-child(1),
-  .enrolled-table td:nth-child(1) {
-    width: 15%;
-    min-width: 100px;
-  }
-
-  .enrolled-table th:nth-child(2),
-  .enrolled-table td:nth-child(2) {
-    width: 45%;
-    min-width: 250px;
-  }
-
-  .enrolled-table th:nth-child(3),
-  .enrolled-table td:nth-child(3) {
-    width: 20%;
-    min-width: 120px;
-  }
-
   .enrolled-table th:nth-child(4),
   .enrolled-table td:nth-child(4) {
-    width: 20%;
-    min-width: 130px;
+    min-width: 120px;
     text-align: center;
+  }
+
+  .enrolled-table {
+    table-layout: auto;
   }
 }
 
@@ -758,10 +734,6 @@ button:hover {
     width: 95%;
     margin: 0 10px;
   }
-
-  .enrolled-table {
-    table-layout: fixed;
-  }
 }
 
 @media (max-width: 768px) {
@@ -848,10 +820,6 @@ button:hover {
   }
 
   /* Tablet table adjustments */
-  .enrolled-table {
-    table-layout: fixed;
-  }
-
   .enrolled-table th {
     padding: 10px 8px;
     font-size: 12px;
