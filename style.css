@@ -296,19 +296,20 @@ body {
   margin: 2px 0 0;
 }
 
+/* ENROLL BUTTON - Extra small across all sizes */
 .enroll-pill {
   background: #2a0a4a;
   color: white;
   border: none;
-  border-radius: 24px;
-  padding: 8px 16px;
+  border-radius: 20px;
+  padding: 4px 8px;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.02em;
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease;
   white-space: nowrap;
-  font-size: 0.85rem;
+  font-size: 0.65rem;
 }
 
 .enroll-pill:hover {
@@ -340,27 +341,36 @@ body {
   width: 100%;
   border-collapse: collapse;
   background: white;
+  table-layout: fixed;
 }
 
 .enrolled-table th {
   background: #2A0A4A;
   color: white;
-  padding: 14px 16px;
+  padding: 14px 12px;
   text-align: left;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  word-wrap: break-word;
 }
 
 .enrolled-table td {
-  padding: 14px 16px;
+  padding: 14px 12px;
   border-bottom: 1px solid #eee;
   vertical-align: middle;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Fill entire row with violet background */
+.enrolled-table tbody tr {
+  background: #e8e4f5;
 }
 
 .enrolled-table tbody tr:hover {
-  background: #f8f9fa;
+  background: #ddd5f0;
 }
 
 .enrolled-table tbody tr:last-child td {
@@ -370,7 +380,7 @@ body {
 .enrolled-course-code {
   font-weight: 700;
   color: #2A0A4A;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .enrolled-course-title {
@@ -381,7 +391,7 @@ body {
 
 .enrolled-date {
   color: #666;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
 }
 
@@ -389,14 +399,16 @@ body {
   background: #dc3545;
   color: white;
   border: none;
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: 4px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: background 0.2s ease;
+  width: 100%;
+  text-align: center;
 }
 
 .drop-btn:hover {
@@ -789,20 +801,77 @@ button:hover {
     font-size: 20px;
   }
 
-  /* MOBILE: Make button smaller to avoid overlay */
+  /* TABLET: Extra small button */
   .enroll-pill {
-    padding: 6px 12px;
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
+    padding: 3px 6px;
+    font-size: 0.6rem;
+    letter-spacing: 0.01em;
+    border-radius: 18px;
+  }
+
+  /* Mobile table adjustments */
+  .enrolled-table th {
+    padding: 10px 6px;
+    font-size: 11px;
+  }
+
+  .enrolled-table td {
+    padding: 10px 6px;
+    font-size: 12px;
+  }
+
+  .enrolled-course-code {
+    font-size: 12px;
+  }
+
+  .enrolled-course-title {
+    font-size: 12px;
+  }
+
+  .enrolled-date {
+    font-size: 11px;
+  }
+
+  .drop-btn {
+    padding: 4px 6px;
+    font-size: 9px;
   }
 }
 
 @media (max-width: 480px) {
-  /* EXTRA SMALL: Make button even smaller */
+  /* MOBILE: Ultra small button */
   .enroll-pill {
-    padding: 5px 10px;
-    font-size: 0.7rem;
-    letter-spacing: 0.02em;
+    padding: 2px 5px;
+    font-size: 0.55rem;
+    border-radius: 16px;
+  }
+
+  /* Mobile table - very compact */
+  .enrolled-table th {
+    padding: 8px 4px;
+    font-size: 10px;
+  }
+
+  .enrolled-table td {
+    padding: 8px 4px;
+    font-size: 11px;
+  }
+
+  .enrolled-course-code {
+    font-size: 11px;
+  }
+
+  .enrolled-course-title {
+    font-size: 11px;
+  }
+
+  .enrolled-date {
+    font-size: 10px;
+  }
+
+  .drop-btn {
+    padding: 3px 4px;
+    font-size: 8px;
   }
 }
 
