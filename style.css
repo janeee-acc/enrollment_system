@@ -333,16 +333,15 @@ body {
   background: white;
   border-radius: 8px;
   border: 1px solid #ddd;
-  overflow: auto;
+  overflow: visible;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .enrolled-table {
   width: 100%;
-  min-width: 1000px;
   border-collapse: collapse;
   background: white;
-  table-layout: auto;
+  table-layout: fixed;
 }
 
 /* Desktop styling */
@@ -355,6 +354,7 @@ body {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  word-break: break-word;
 }
 
 .enrolled-table td {
@@ -380,21 +380,21 @@ body {
   font-weight: 700;
   color: #2A0A4A;
   font-size: 15px;
-  min-width: 100px;
+  word-wrap: break-word;
 }
 
 .enrolled-course-title {
   color: #333;
   font-weight: 500;
   line-height: 1.4;
-  min-width: 250px;
+  word-wrap: break-word;
 }
 
 .enrolled-date {
   color: #666;
   font-size: 13px;
   font-weight: 500;
-  min-width: 120px;
+  word-wrap: break-word;
 }
 
 .drop-btn {
@@ -411,11 +411,42 @@ body {
   transition: background 0.2s ease;
   display: inline-block;
   white-space: nowrap;
-  min-width: 120px;
 }
 
 .drop-btn:hover {
   background: #c82333;
+}
+
+/* Desktop - ensure ACTION column is visible */
+@media (min-width: 1025px) {
+  .enrolled-table {
+    table-layout: auto;
+  }
+
+  .enrolled-table th:nth-child(1),
+  .enrolled-table td:nth-child(1) {
+    width: 15%;
+    min-width: 100px;
+  }
+
+  .enrolled-table th:nth-child(2),
+  .enrolled-table td:nth-child(2) {
+    width: 45%;
+    min-width: 250px;
+  }
+
+  .enrolled-table th:nth-child(3),
+  .enrolled-table td:nth-child(3) {
+    width: 20%;
+    min-width: 120px;
+  }
+
+  .enrolled-table th:nth-child(4),
+  .enrolled-table td:nth-child(4) {
+    width: 20%;
+    min-width: 130px;
+    text-align: center;
+  }
 }
 
 .toast {
@@ -729,7 +760,7 @@ button:hover {
   }
 
   .enrolled-table {
-    min-width: 600px;
+    table-layout: fixed;
   }
 }
 
@@ -818,7 +849,7 @@ button:hover {
 
   /* Tablet table adjustments */
   .enrolled-table {
-    min-width: 500px;
+    table-layout: fixed;
   }
 
   .enrolled-table th {
@@ -865,7 +896,6 @@ button:hover {
   .enrolled-table tr {
     display: block;
     width: 100%;
-    min-width: unset;
   }
 
   .enrolled-table thead {
@@ -907,17 +937,14 @@ button:hover {
 
   .enrolled-course-code {
     font-size: 13px;
-    min-width: unset;
   }
 
   .enrolled-course-title {
     font-size: 12px;
-    min-width: unset;
   }
 
   .enrolled-date {
     font-size: 11px;
-    min-width: unset;
   }
 
   .drop-btn {
@@ -926,7 +953,6 @@ button:hover {
     background: #dc3545;
     display: inline-block;
     white-space: nowrap;
-    min-width: unset;
   }
 }
 
