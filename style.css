@@ -333,7 +333,7 @@ body {
   background: white;
   border-radius: 8px;
   border: 1px solid #ddd;
-  overflow: hidden;
+  overflow-x: auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -341,21 +341,23 @@ body {
   width: 100%;
   border-collapse: collapse;
   background: white;
+  min-width: 500px;
 }
 
 .enrolled-table th {
   background: #2A0A4A;
   color: white;
-  padding: 14px 16px;
+  padding: 14px 12px;
   text-align: left;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 .enrolled-table td {
-  padding: 14px 16px;
+  padding: 14px 12px;
   border-bottom: 1px solid #eee;
   vertical-align: middle;
 }
@@ -376,33 +378,37 @@ body {
 .enrolled-course-code {
   font-weight: 700;
   color: #2A0A4A;
-  font-size: 15px;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 .enrolled-course-title {
   color: #333;
   font-weight: 500;
   line-height: 1.4;
+  word-wrap: break-word;
 }
 
 .enrolled-date {
   color: #666;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .drop-btn {
   background: #dc3545;
   color: white;
   border: none;
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: 4px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: background 0.2s ease;
+  white-space: nowrap;
 }
 
 .drop-btn:hover {
@@ -802,6 +808,25 @@ button:hover {
     letter-spacing: 0.01em;
     border-radius: 18px;
   }
+
+  /* Mobile table adjustments */
+  .enrolled-table th {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+
+  .enrolled-table td {
+    padding: 12px 8px;
+  }
+
+  .enrolled-course-code {
+    font-size: 13px;
+  }
+
+  .drop-btn {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -810,6 +835,37 @@ button:hover {
     padding: 2px 5px;
     font-size: 0.55rem;
     border-radius: 16px;
+  }
+
+  /* Mobile table - even more compact */
+  .enrolled-table {
+    min-width: 450px;
+  }
+
+  .enrolled-table th {
+    padding: 10px 6px;
+    font-size: 11px;
+  }
+
+  .enrolled-table td {
+    padding: 10px 6px;
+  }
+
+  .enrolled-course-code {
+    font-size: 12px;
+  }
+
+  .enrolled-course-title {
+    font-size: 13px;
+  }
+
+  .enrolled-date {
+    font-size: 11px;
+  }
+
+  .drop-btn {
+    padding: 4px 6px;
+    font-size: 9px;
   }
 }
 
