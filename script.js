@@ -263,15 +263,23 @@ function updateList() {
 
   const enrolledCourses = currentStudent.getEnrolledCourses();
   enrolledCourses.forEach((code, index) => {
-    const item = document.createElement('li');
-    item.className = 'enrolled-item';
+    const course = getCourseInfo(code);
+    if (course) {
+      const item = document.createElement('article');
+      item.className = 'enrolled-card';
 
-    item.innerHTML = `
-      <span>${code}</span>
-      <button onclick="dropCourse(${index})">Drop</button>
-    `;
+      const grade = currentStudent.getGrade(code);
+      const gradeDisplay = grade ? `Grade: ${grade}` : 'No grade assigned';
 
-    list.appendChild(item);
+      item.innerHTML = `
+        <button class="drop-pill" onclick="dropCourse(${index})">DROP</button>
+        <h3>${course.code}</h3>
+        <p class="course-title">${course.title}</p>
+        <p class="grade-info">${gradeDisplay}</p>
+      `;
+
+      list.appendChild(item);
+    }
   });
 
   document.getElementById('enrolledCount').innerText = currentStudent.getEnrolledCoursesCount();
