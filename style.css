@@ -309,7 +309,6 @@ body {
   transition: transform 0.2s ease, background 0.2s ease;
   white-space: nowrap;
   font-size: 0.85rem;
-  flex-shrink: 0;
 }
 
 .enroll-pill:hover {
@@ -790,22 +789,20 @@ button:hover {
     font-size: 20px;
   }
 
-  /* FIX FOR MOBILE: Button stacks below on small screens */
-  .course-footer {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-
-  .student-info {
-    width: 100%;
-  }
-
+  /* MOBILE: Make button smaller to avoid overlay */
   .enroll-pill {
-    width: 100%;
-    text-align: center;
+    padding: 6px 12px;
     font-size: 0.75rem;
-    padding: 10px 12px;
+    letter-spacing: 0.04em;
+  }
+}
+
+@media (max-width: 480px) {
+  /* EXTRA SMALL: Make button even smaller */
+  .enroll-pill {
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
   }
 }
 
