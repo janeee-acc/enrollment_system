@@ -836,3 +836,23 @@ button:hover {
     font-size: 13px !important;
   }
 }
+
+/* Extra small screens - prevent overlay */
+@media (max-width: 480px) {
+  .course-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+
+  .course-card {
+    padding-top: 50px !important; /* Extra top padding to avoid button overlay */
+    min-height: 200px !important;
+  }
+
+  .enroll-pill {
+    top: 10px !important;
+    right: 10px !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+  }
+}
