@@ -341,27 +341,23 @@ body {
   width: 100%;
   border-collapse: collapse;
   background: white;
-  table-layout: fixed;
 }
 
 .enrolled-table th {
   background: #2A0A4A;
   color: white;
-  padding: 14px 12px;
+  padding: 14px 16px;
   text-align: left;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  word-wrap: break-word;
 }
 
 .enrolled-table td {
-  padding: 14px 12px;
+  padding: 14px 16px;
   border-bottom: 1px solid #eee;
   vertical-align: middle;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 /* Fill entire row with violet background */
@@ -380,7 +376,7 @@ body {
 .enrolled-course-code {
   font-weight: 700;
   color: #2A0A4A;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .enrolled-course-title {
@@ -391,7 +387,7 @@ body {
 
 .enrolled-date {
   color: #666;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
 }
 
@@ -399,16 +395,14 @@ body {
   background: #dc3545;
   color: white;
   border: none;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 11px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: background 0.2s ease;
-  width: 100%;
-  text-align: center;
 }
 
 .drop-btn:hover {
@@ -809,19 +803,18 @@ button:hover {
     border-radius: 18px;
   }
 
-  /* Mobile table adjustments */
+  /* Tablet table adjustments */
   .enrolled-table th {
-    padding: 10px 6px;
-    font-size: 11px;
+    padding: 10px 8px;
+    font-size: 12px;
   }
 
   .enrolled-table td {
-    padding: 10px 6px;
-    font-size: 12px;
+    padding: 10px 8px;
   }
 
   .enrolled-course-code {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .enrolled-course-title {
@@ -833,8 +826,8 @@ button:hover {
   }
 
   .drop-btn {
-    padding: 4px 6px;
-    font-size: 9px;
+    padding: 5px 8px;
+    font-size: 10px;
   }
 }
 
@@ -846,32 +839,72 @@ button:hover {
     border-radius: 16px;
   }
 
-  /* Mobile table - very compact */
-  .enrolled-table th {
-    padding: 8px 4px;
-    font-size: 10px;
+  /* Stack layout for mobile */
+  .enrolled-table,
+  .enrolled-table thead,
+  .enrolled-table tbody,
+  .enrolled-table th,
+  .enrolled-table td,
+  .enrolled-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .enrolled-table thead {
+    display: none;
+  }
+
+  .enrolled-table tbody tr {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #e8e4f5;
   }
 
   .enrolled-table td {
-    padding: 8px 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: right;
+  }
+
+  .enrolled-table td:last-child {
+    border-bottom: none;
+  }
+
+  .enrolled-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #2A0A4A;
+    margin-right: 10px;
+    text-align: left;
+    flex: 1;
     font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
   }
 
   .enrolled-course-code {
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .enrolled-course-title {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .enrolled-date {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .drop-btn {
-    padding: 3px 4px;
-    font-size: 8px;
+    padding: 6px 10px;
+    font-size: 10px;
+    background: #dc3545;
+    display: inline-block;
+    white-space: nowrap;
   }
 }
 

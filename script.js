@@ -47,8 +47,8 @@ class Student {
   constructor(id, name) {
     this.id = id;
     this.name = name;
-    this.enrolledCourses = []; // Array of {code, enrollmentDate}
-    this.grades = {}; // { courseCode: grade }
+    this.enrolledCourses = [];
+    this.grades = {};
   }
 
   enrollCourse(course, prerequisitesMet = true) {
@@ -87,7 +87,6 @@ class Student {
 
   setGrade(courseCode, grade) {
     const normalized = parseFloat(grade);
-    // Numerical GPA on Philippine style: 1.0 best, 3.0 lowest passing, 4.0/5.0 failing
     if (!isNaN(normalized) && normalized >= 1.0 && normalized <= 5.0) {
       this.grades[courseCode] = normalized;
       return true;
@@ -164,7 +163,6 @@ const courseCatalog = [
   new Course('GE 1 SS', 'Understanding the Self', 40)
 ];
 
-// Initialize student with enrollment data
 let currentStudent = new Student(1, 'John Doe');
 let courseToDrop = null;
 
@@ -180,7 +178,6 @@ function navigate(index) {
   if (index === 1) document.getElementById("available").classList.remove("hidden");
   if (index === 2) document.getElementById("enrolled").classList.remove("hidden");
 
-  // Close sidebar on mobile after navigation
   if (window.innerWidth <= 768) {
     document.querySelector('.sidebar').classList.remove('sidebar-open');
   }
@@ -191,7 +188,6 @@ function toggleSidebar() {
   sidebar.classList.toggle('sidebar-open');
 }
 
-// Ensure mobile nav starts closed on small screens
 document.addEventListener('DOMContentLoaded', () => {
   if (window.innerWidth <= 1024) {
     document.querySelector('.sidebar').classList.remove('sidebar-open');
@@ -298,17 +294,17 @@ function updateList() {
       
       const row = document.createElement('tr');
       row.innerHTML = `
-        <td>
+        <td data-label="Course Code">
           <div class="enrolled-course-code">${enrollment.code}</div>
         </td>
-        <td>
+        <td data-label="Course Title">
           <div class="enrolled-course-title">${course ? course.title : 'Unknown Course'}</div>
         </td>
-        <td>
+        <td data-label="Enrollment Date">
           <div class="enrolled-date">${enrollmentDate}</div>
         </td>
-        <td>
-          <button class="drop-btn" onclick="dropCourse(${index})">Drop Course</button>
+        <td data-label="Action">
+          <button class="drop-btn" onclick="dropCourse(${index})">Drop</button>
         </td>
       `;
       tableBody.appendChild(row);
@@ -322,7 +318,6 @@ function openGradeModal() {
   const modal = document.getElementById('gradeModal');
   modal.classList.add('show');
   
-  // Populate with existing grades
   const inputs = document.querySelectorAll('.grade-input');
   inputs.forEach(input => {
     const code = input.dataset.course;
@@ -377,7 +372,6 @@ function saveGrades() {
       }
     } else {
       input.style.borderColor = '#ddd';
-      // Remove grade if empty
       delete currentStudent.grades[code];
     }
   });
@@ -402,16 +396,13 @@ function updateDashboard() {
   }
 }
 
-// Course search functionality
 function initializeCourseSearch() {
   const searchInput = document.getElementById('courseSearch');
   if (searchInput) {
-    // Real-time search as user types
     searchInput.addEventListener('input', function() {
       filterCourses(this.value.toLowerCase());
     });
     
-    // Allow search on Enter key
     searchInput.addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
         performSearch();
@@ -426,7 +417,6 @@ function performSearch() {
     const searchTerm = searchInput.value.toLowerCase();
     filterCourses(searchTerm);
     
-    // Add visual feedback
     const searchBtn = document.querySelector('.search-btn');
     searchBtn.style.transform = 'scale(0.95)';
     setTimeout(() => {
@@ -443,7 +433,6 @@ function filterCourses(searchTerm) {
     const courseTitle = card.querySelector('.course-title').textContent.toLowerCase();
     const courseH3 = card.querySelector('h3').textContent.toLowerCase();
     
-    // Check if search term matches course code, title, or h3 text
     const matches = courseCode.includes(searchTerm) || 
                    courseTitle.includes(searchTerm) || 
                    courseH3.includes(searchTerm);
@@ -456,13 +445,11 @@ function filterCourses(searchTerm) {
   });
 }
 
-// Initialize on page load
 window.addEventListener('DOMContentLoaded', () => {
   updateDashboard();
   updateAllCourseCards();
   updateList();
   navigate(0);
   
-  // Initialize course search functionality
   initializeCourseSearch();
 });
