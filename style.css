@@ -333,12 +333,13 @@ body {
   background: white;
   border-radius: 8px;
   border: 1px solid #ddd;
-  overflow: visible;
+  overflow: auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .enrolled-table {
   width: 100%;
+  min-width: 1000px;
   border-collapse: collapse;
   background: white;
   table-layout: auto;
@@ -356,18 +357,10 @@ body {
   letter-spacing: 0.5px;
 }
 
-.enrolled-table th:last-child {
-  text-align: center;
-}
-
 .enrolled-table td {
   padding: 14px 16px;
   border-bottom: 1px solid #eee;
   vertical-align: middle;
-}
-
-.enrolled-table td:last-child {
-  text-align: center;
 }
 
 /* Fill entire row with violet background */
@@ -387,18 +380,21 @@ body {
   font-weight: 700;
   color: #2A0A4A;
   font-size: 15px;
+  min-width: 100px;
 }
 
 .enrolled-course-title {
   color: #333;
   font-weight: 500;
   line-height: 1.4;
+  min-width: 250px;
 }
 
 .enrolled-date {
   color: #666;
   font-size: 13px;
   font-weight: 500;
+  min-width: 120px;
 }
 
 .drop-btn {
@@ -415,6 +411,7 @@ body {
   transition: background 0.2s ease;
   display: inline-block;
   white-space: nowrap;
+  min-width: 120px;
 }
 
 .drop-btn:hover {
@@ -730,6 +727,10 @@ button:hover {
     width: 95%;
     margin: 0 10px;
   }
+
+  .enrolled-table {
+    min-width: 600px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -816,6 +817,10 @@ button:hover {
   }
 
   /* Tablet table adjustments */
+  .enrolled-table {
+    min-width: 500px;
+  }
+
   .enrolled-table th {
     padding: 10px 8px;
     font-size: 12px;
@@ -860,6 +865,7 @@ button:hover {
   .enrolled-table tr {
     display: block;
     width: 100%;
+    min-width: unset;
   }
 
   .enrolled-table thead {
@@ -901,14 +907,17 @@ button:hover {
 
   .enrolled-course-code {
     font-size: 13px;
+    min-width: unset;
   }
 
   .enrolled-course-title {
     font-size: 12px;
+    min-width: unset;
   }
 
   .enrolled-date {
     font-size: 11px;
+    min-width: unset;
   }
 
   .drop-btn {
@@ -917,6 +926,7 @@ button:hover {
     background: #dc3545;
     display: inline-block;
     white-space: nowrap;
+    min-width: unset;
   }
 }
 
