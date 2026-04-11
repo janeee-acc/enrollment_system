@@ -178,7 +178,7 @@ body {
 /* Available course card grid */
 .course-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
   margin-top: 12px;
 }
@@ -660,7 +660,7 @@ button:hover {
   }
 
   .course-grid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
 
   .sidebar {
@@ -834,25 +834,5 @@ button:hover {
 
   .header p {
     font-size: 13px !important;
-  }
-}
-
-/* Extra small screens - prevent overlay */
-@media (max-width: 480px) {
-  .course-grid {
-    grid-template-columns: 1fr !important;
-    gap: 15px !important;
-  }
-
-  .course-card {
-    padding-top: 50px !important; /* Extra top padding to avoid button overlay */
-    min-height: 200px !important;
-  }
-
-  .enroll-pill {
-    top: 10px !important;
-    right: 10px !important;
-    padding: 6px 12px !important;
-    font-size: 12px !important;
   }
 }
