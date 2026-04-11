@@ -333,7 +333,7 @@ body {
   background: white;
   border-radius: 8px;
   border: 1px solid #ddd;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -341,8 +341,10 @@ body {
   width: 100%;
   border-collapse: collapse;
   background: white;
+  table-layout: auto;
 }
 
+/* Desktop styling */
 .enrolled-table th {
   background: #2A0A4A;
   color: white;
@@ -354,10 +356,18 @@ body {
   letter-spacing: 0.5px;
 }
 
+.enrolled-table th:last-child {
+  text-align: center;
+}
+
 .enrolled-table td {
   padding: 14px 16px;
   border-bottom: 1px solid #eee;
   vertical-align: middle;
+}
+
+.enrolled-table td:last-child {
+  text-align: center;
 }
 
 /* Fill entire row with violet background */
@@ -403,6 +413,8 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: background 0.2s ease;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .drop-btn:hover {
