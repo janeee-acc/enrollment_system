@@ -47,12 +47,12 @@ class Student {
   constructor(id, name) {
     this.id = id;
     this.name = name;
-    this.enrolledCourses = []; // Array of course codes
+    this.enrolledCourses = []; // Array of {code, enrollmentDate}
     this.grades = {}; // { courseCode: grade }
   }
 
   enrollCourse(course, prerequisitesMet = true) {
-    if (this.enrolledCourses.includes(course.code)) {
+    if (this.enrolledCourses.some(ec => ec.code === course.code)) {
       return { success: false, message: `${course.code} is already in enrolled courses.` };
     }
 
@@ -65,7 +65,10 @@ class Student {
     }
 
     if (course.addStudent()) {
-      this.enrolledCourses.push(course.code);
+      this.enrolledCourses.push({
+        code: course.code,
+        enrollmentDate: new Date()
+      });
       return { success: true, message: `${course.code} added to enrolled courses successfully.` };
     }
 
@@ -73,7 +76,7 @@ class Student {
   }
 
   dropCourse(course) {
-    const index = this.enrolledCourses.indexOf(course.code);
+    const index = this.enrolledCourses.findIndex(ec => ec.code === course.code);
     if (index > -1) {
       course.removeStudent();
       this.enrolledCourses.splice(index, 1);
@@ -102,6 +105,10 @@ class Student {
   }
 
   getEnrolledCourses() {
+    return this.enrolledCourses.map(ec => ec.code);
+  }
+
+  getEnrolledCoursesWithDates() {
     return [...this.enrolledCourses];
   }
 
@@ -138,13 +145,23 @@ class Enrollment {
 
 // ========== COURSE CATALOG (Global) ==========
 const courseCatalog = [
-  new Course('ICT 116', 'Human Computer Interaction', 40),
-  new Course('PE 1', 'PATHFIT 1: Movement Competency Training', 40),
-  new Course('CS 1', 'Programming Logic Formulation', 40),
+  new Course('ICT 103', 'Fundamentals of Programming', 40),
   new Course('GE 3 SS', 'The Contemporary World', 40),
-  new Course('ICT 105', 'Discrete Structure 1', 40, ['CS 1']),
-  new Course('ICT 106', 'Discrete Structure 2', 40, ['ICT 105']),
-  new Course('ENG 3', 'Technical Writing with Oral Communication', 40)
+  new Course('ICT 106', 'System Fundamentals', 40, ['ICT 105']),
+  new Course('ENG 3', 'Technical Writing with Oral Communication', 40),
+  new Course('ICT 105', 'Discrete Structure 1', 40, ['ICT 103']),
+  new Course('PE 2', 'PATHFIT 2: Exercise-Based Fitness Activities', 40, ['PE 1']),
+  new Course('GE 2 SS', 'Readings in Philippine History', 40),
+  new Course('NSTP 2-CWTS', 'NSTP 2-Civic Welfare Training Service', 40, ['NSTP 1-CWTS']),
+  new Course('PE 1', 'PATHFIT 1: Movement Competency Training', 40),
+  new Course('GE 5 ENG', 'Purposive Communication', 40),
+  new Course('NSTP 1-CWTS', 'NSTP 1-Civic Welfare Training Service', 40),
+  new Course('CS 1', 'Programming Logic Formulation', 40),
+  new Course('GE ELEC 10', 'Philippine Popular Culture', 40),
+  new Course('GE 4 MATH', 'Mathematics in the Modern World', 40),
+  new Course('ICT 102', 'Introduction to Computing', 40),
+  new Course('GE 8 SS', 'Ethics', 40),
+  new Course('GE 1 SS', 'Understanding the Self', 40)
 ];
 
 // Initialize student with enrollment data
@@ -246,41 +263,57 @@ function enroll(code) {
 }
 
 function dropCourse(index) {
-  const code = currentStudent.getEnrolledCourses()[index];
-  const course = getCourseInfo(code);
+  const enrolledCourses = currentStudent.getEnrolledCoursesWithDates();
+  const enrollment = enrolledCourses[index];
   
-  if (course) {
-    courseToDrop = { course, index };
-    document.getElementById('dropMessage').textContent = `Are you sure you want to drop ${course.code}: ${course.title}?`;
-    const modal = document.getElementById('dropModal');
-    modal.classList.add('show');
+  if (enrollment) {
+    const course = getCourseInfo(enrollment.code);
+    if (course) {
+      courseToDrop = { course, index };
+      document.getElementById('dropMessage').textContent = `Are you sure you want to drop ${course.code}: ${course.title}?`;
+      const modal = document.getElementById('dropModal');
+      modal.classList.add('show');
+    }
   }
 }
 
 function updateList() {
-  const list = document.getElementById('courseList');
-  list.innerHTML = '';
+  const tableBody = document.getElementById('enrolledTableBody');
+  tableBody.innerHTML = '';
 
-  const enrolledCourses = currentStudent.getEnrolledCourses();
-  enrolledCourses.forEach((code, index) => {
-    const course = getCourseInfo(code);
-    if (course) {
-      const item = document.createElement('article');
-      item.className = 'enrolled-card';
-
-      const grade = currentStudent.getGrade(code);
-      const gradeDisplay = grade ? `Grade: ${grade}` : 'No grade assigned';
-
-      item.innerHTML = `
-        <button class="drop-pill" onclick="dropCourse(${index})">DROP</button>
-        <h3>${course.code}</h3>
-        <p class="course-title">${course.title}</p>
-        <p class="grade-info">${gradeDisplay}</p>
+  const enrolledCourses = currentStudent.getEnrolledCoursesWithDates();
+  
+  if (enrolledCourses.length === 0) {
+    const emptyRow = document.createElement('tr');
+    emptyRow.innerHTML = `
+      <td colspan="4" style="text-align: center; padding: 40px; color: #666; font-style: italic;">
+        No courses enrolled yet. Visit the Available Courses section to enroll.
+      </td>
+    `;
+    tableBody.appendChild(emptyRow);
+  } else {
+    enrolledCourses.forEach((enrollment, index) => {
+      const course = getCourseInfo(enrollment.code);
+      const enrollmentDate = enrollment.enrollmentDate.toLocaleDateString();
+      
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>
+          <div class="enrolled-course-code">${enrollment.code}</div>
+        </td>
+        <td>
+          <div class="enrolled-course-title">${course ? course.title : 'Unknown Course'}</div>
+        </td>
+        <td>
+          <div class="enrolled-date">${enrollmentDate}</div>
+        </td>
+        <td>
+          <button class="drop-btn" onclick="dropCourse(${index})">Drop Course</button>
+        </td>
       `;
-
-      list.appendChild(item);
-    }
-  });
+      tableBody.appendChild(row);
+    });
+  }
 
   document.getElementById('enrolledCount').innerText = currentStudent.getEnrolledCoursesCount();
 }
@@ -325,28 +358,102 @@ function confirmDrop() {
 function saveGrades() {
   const inputs = document.querySelectorAll('.grade-input');
   let saved = 0;
+  let hasErrors = false;
 
   inputs.forEach(input => {
     const code = input.dataset.course;
-    const grade = input.value.trim().toUpperCase();
-    if (grade && currentStudent.setGrade(code, grade)) {
-      saved++;
+    const gradeValue = input.value.trim();
+    
+    if (gradeValue) {
+      const grade = parseFloat(gradeValue);
+      if (isNaN(grade) || grade < 1.0 || grade > 5.0) {
+        input.style.borderColor = '#dc3545';
+        hasErrors = true;
+      } else {
+        input.style.borderColor = '#28a745';
+        if (currentStudent.setGrade(code, grade)) {
+          saved++;
+        }
+      }
+    } else {
+      input.style.borderColor = '#ddd';
+      // Remove grade if empty
+      delete currentStudent.grades[code];
     }
   });
+
+  if (hasErrors) {
+    showToast('Please enter valid grades between 1.0 and 5.0');
+    return;
+  }
 
   if (saved > 0) {
     showToast(`Grades saved successfully (${saved} course(s)).`);
     closeGradeModal();
   } else {
-    showToast('Please enter valid grades (1.0 through 5.0).');
+    showToast('No grades were entered.');
   }
 }
 
 function updateDashboard() {
   const welcome = document.querySelector('#dashboard .card h3');
   if (welcome) {
-    welcome.textContent = `Welcome, ${currentStudent.name}`;
+    welcome.textContent = `Welcome, ${currentStudent.name}!`;
   }
+}
+
+// Course search functionality
+function initializeCourseSearch() {
+  const searchInput = document.getElementById('courseSearch');
+  if (searchInput) {
+    // Real-time search as user types
+    searchInput.addEventListener('input', function() {
+      filterCourses(this.value.toLowerCase());
+    });
+    
+    // Allow search on Enter key
+    searchInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
+  }
+}
+
+function performSearch() {
+  const searchInput = document.getElementById('courseSearch');
+  if (searchInput) {
+    const searchTerm = searchInput.value.toLowerCase();
+    filterCourses(searchTerm);
+    
+    // Add visual feedback
+    const searchBtn = document.querySelector('.search-btn');
+    searchBtn.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      searchBtn.style.transform = 'scale(1)';
+    }, 150);
+  }
+}
+
+function filterCourses(searchTerm) {
+  const courseCards = document.querySelectorAll('.course-card');
+  
+  courseCards.forEach(card => {
+    const courseCode = card.dataset.course.toLowerCase();
+    const courseTitle = card.querySelector('.course-title').textContent.toLowerCase();
+    const courseH3 = card.querySelector('h3').textContent.toLowerCase();
+    
+    // Check if search term matches course code, title, or h3 text
+    const matches = courseCode.includes(searchTerm) || 
+                   courseTitle.includes(searchTerm) || 
+                   courseH3.includes(searchTerm);
+    
+    if (matches || searchTerm === '') {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
 }
 
 // Initialize on page load
@@ -355,4 +462,7 @@ window.addEventListener('DOMContentLoaded', () => {
   updateAllCourseCards();
   updateList();
   navigate(0);
+  
+  // Initialize course search functionality
+  initializeCourseSearch();
 });

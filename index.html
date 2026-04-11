@@ -64,44 +64,36 @@
 
       <div class="stats">
         <div class="stat">
-          <h4>Enrolled Courses</h4>
+          <h4>📚 Enrolled Courses</h4>
           <h2 id="enrolledCount">0</h2>
         </div>
 
         <div class="stat">
-          <h4>Available Courses</h4>
+          <h4>📖 Available Courses</h4>
           <h2>7</h2>
         </div>
       </div>
     </section>
 
+
     <!-- AVAILABLE COURSES -->
     <section id="available" class="page hidden">
       <h2>Available Courses</h2>
 
+      <div class="search-container">
+        <input type="text" id="courseSearch" placeholder="Search courses by code or title..." class="search-input">
+        <button type="button" class="search-btn" onclick="performSearch()">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+      </div>
+
       <div class="course-grid">
-        <article class="course-card accent-gold" data-course="ICT 116">
-          <button class="enroll-pill" onclick="enroll('ICT 116')">ENROLL</button>
-          <h3>ICT 116</h3>
-          <p class="course-title">Human Computer Interaction</p>
+        <article class="course-card accent-gold" data-course="ICT 103">
+          <button class="enroll-pill" onclick="enroll('ICT 103')">ENROLL</button>
+          <h3>ICT 103</h3>
+          <p class="course-title">Fundamentals of Programming</p>
           <p class="student-count">TOTAL STUDENTS</p>
-          <p class="count-value">30 / 40</p>
-        </article>
-
-        <article class="course-card accent-green" data-course="PE 1">
-          <button class="enroll-pill" onclick="enroll('PE 1')">ENROLL</button>
-          <h3>PE 1</h3>
-          <p class="course-title">PATHFIT 1: Movement Competency Training</p>
-          <p class="student-count">TOTAL STUDENTS</p>
-          <p class="count-value">11 / 40</p>
-        </article>
-
-        <article class="course-card accent-purple" data-course="CS 1">
-          <button class="enroll-pill" onclick="enroll('CS 1')">ENROLL</button>
-          <h3>CS 1</h3>
-          <p class="course-title">Programming Logic Formulation</p>
-          <p class="student-count">TOTAL STUDENTS</p>
-          <p class="count-value">25 / 40</p>
+          <p class="count-value">0 / 40</p>
         </article>
 
         <article class="course-card accent-green" data-course="GE 3 SS">
@@ -109,7 +101,23 @@
           <h3>GE 3 SS</h3>
           <p class="course-title">The Contemporary World</p>
           <p class="student-count">TOTAL STUDENTS</p>
-          <p class="count-value">36 / 40</p>
+          <p class="count-value">0 / 40</p>
+        </article>
+
+        <article class="course-card accent-purple" data-course="ICT 106">
+          <button class="enroll-pill" onclick="enroll('ICT 106')">ENROLL</button>
+          <h3>ICT 106</h3>
+          <p class="course-title">System Fundamentals</p>
+          <p class="student-count">TOTAL STUDENTS</p>
+          <p class="count-value">0 / 40</p>
+        </article>
+
+        <article class="course-card accent-green" data-course="ENG 3">
+          <button class="enroll-pill" onclick="enroll('ENG 3')">ENROLL</button>
+          <h3>ENG 3</h3>
+          <p class="course-title">Technical Writing with Oral Communication</p>
+          <p class="student-count">TOTAL STUDENTS</p>
+          <p class="count-value">0 / 40</p>
         </article>
 
         <article class="course-card accent-purple" data-course="ICT 105">
@@ -117,23 +125,103 @@
           <h3>ICT 105</h3>
           <p class="course-title">Discrete Structure 1</p>
           <p class="student-count">TOTAL STUDENTS</p>
-          <p class="count-value">13 / 40</p>
+          <p class="count-value">0 / 40</p>
         </article>
 
-        <article class="course-card accent-purple" data-course="ICT 106">
-          <button class="enroll-pill" onclick="enroll('ICT 106')">ENROLL</button>
-          <h3>ICT 106</h3>
-          <p class="course-title">Discrete Structure 2</p>
+        <article class="course-card accent-purple" data-course="PE 2">
+          <button class="enroll-pill" onclick="enroll('PE 2')">ENROLL</button>
+          <h3>PE 2</h3>
+          <p class="course-title">PATHFIT 2: Exercise-Based Fitness Activities</p>
           <p class="student-count">TOTAL STUDENTS</p>
           <p class="count-value">0 / 40</p>
         </article>
 
-        <article class="course-card accent-gold" data-course="ENG 3">
-          <button class="enroll-pill" onclick="enroll('ENG 3')">ENROLL</button>
-          <h3>ENG 3</h3>
-          <p class="course-title">Technical Writing with Oral Communication</p>
+        <article class="course-card accent-gold" data-course="GE 2 SS">
+          <button class="enroll-pill" onclick="enroll('GE 2 SS')">ENROLL</button>
+          <h3>GE 2 SS</h3>
+          <p class="course-title">Readings in Philippine History</p>
           <p class="student-count">TOTAL STUDENTS</p>
-          <p class="count-value">20 / 40</p>
+          <p class="count-value">0 / 40</p>
+        </article>
+
+        <article class="course-card accent-green" data-course="NSTP 2-CWTS">
+          <button class="enroll-pill" onclick="enroll('NSTP 2-CWTS')">ENROLL</button>
+          <h3>NSTP 2-CWTS</h3>
+          <p class="course-title">NSTP 2-Civic Welfare Training Service</p>
+          <p class="student-count">TOTAL STUDENTS</p>
+          <p class="count-value">0 / 40</p>
+        </article>
+
+        <article class="course-card accent-gold" data-course="PE 1">
+          <button class="enroll-pill" onclick="enroll('PE 1')">ENROLL</button>
+          <h3>PE 1</h3>
+          <p class="course-title">PATHFIT 1: Movement Competency Training</p>
+          <p class="student-count">TOTAL STUDENTS</p>
+          <p class="count-value">0 / 40</p>
+        </article>
+
+        <article class="course-card accent-purple" data-course="GE 5 ENG">
+          <button class="enroll-pill" onclick="enroll('GE 5 ENG')">ENROLL</button>
+          <h3>GE 5 ENG</h3>
+          <p class="course-title">Purposive Communication</p>
+          <p class="student-count">TOTAL STUDENTS</p>
+          <p class="count-value">0 / 40</p>
+        </article>
+
+        <article class="course-card accent-green" data-course="NSTP 1-CWTS">
+          <button class="enroll-pill" onclick="enroll('NSTP 1-CWTS')">ENROLL</button>
+          <h3>NSTP 1-CWTS</h3>
+          <p class="course-title">NSTP 1-Civic Welfare Training Service</p>
+          <p class="student-count">TOTAL STUDENTS</p>
+          <p class="count-value">0 / 40</p>
+        </article>
+
+        <article class="course-card accent-gold" data-course="CS 1">
+          <button class="enroll-pill" onclick="enroll('CS 1')">ENROLL</button>
+          <h3>CS 1</h3>
+          <p class="course-title">Programming Logic Formulation</p>
+          <p class="student-count">TOTAL STUDENTS</p>
+          <p class="count-value">0 / 40</p>
+        </article>
+
+        <article class="course-card accent-purple" data-course="GE ELEC 10">
+          <button class="enroll-pill" onclick="enroll('GE ELEC 10')">ENROLL</button>
+          <h3>GE ELEC 10</h3>
+          <p class="course-title">Philippine Popular Culture</p>
+          <p class="student-count">TOTAL STUDENTS</p>
+          <p class="count-value">0 / 40</p>
+        </article>
+
+        <article class="course-card accent-green" data-course="GE 4 MATH">
+          <button class="enroll-pill" onclick="enroll('GE 4 MATH')">ENROLL</button>
+          <h3>GE 4 MATH</h3>
+          <p class="course-title">Mathematics in the Modern World</p>
+          <p class="student-count">TOTAL STUDENTS</p>
+          <p class="count-value">0 / 40</p>
+        </article>
+
+        <article class="course-card accent-gold" data-course="ICT 102">
+          <button class="enroll-pill" onclick="enroll('ICT 102')">ENROLL</button>
+          <h3>ICT 102</h3>
+          <p class="course-title">Introduction to Computing</p>
+          <p class="student-count">TOTAL STUDENTS</p>
+          <p class="count-value">0 / 40</p>
+        </article>
+
+        <article class="course-card accent-purple" data-course="GE 8 SS">
+          <button class="enroll-pill" onclick="enroll('GE 8 SS')">ENROLL</button>
+          <h3>GE 8 SS</h3>
+          <p class="course-title">Ethics</p>
+          <p class="student-count">TOTAL STUDENTS</p>
+          <p class="count-value">0 / 40</p>
+        </article>
+
+        <article class="course-card accent-green" data-course="GE 1 SS">
+          <button class="enroll-pill" onclick="enroll('GE 1 SS')">ENROLL</button>
+          <h3>GE 1 SS</h3>
+          <p class="course-title">Understanding the Self</p>
+          <p class="student-count">TOTAL STUDENTS</p>
+          <p class="count-value">0 / 40</p>
         </article>
       </div>
     </section>
@@ -142,7 +230,21 @@
     <section id="enrolled" class="page hidden">
       <h2>Enrolled Courses</h2>
 
-      <div id="courseList" class="enrolled-grid"></div>
+      <div class="enrolled-courses-container">
+        <table class="enrolled-table">
+          <thead>
+            <tr>
+              <th>Course Code</th>
+              <th>Course Title</th>
+              <th>Enrollment Date</th>
+              
+            </tr>
+          </thead>
+          <tbody id="enrolledTableBody">
+            <!-- Enrolled courses will be populated here -->
+          </tbody>
+        </table>
+      </div>
     </section>
 
   </main>
@@ -155,31 +257,98 @@
       <button class="close-btn" onclick="closeGradeModal()">&times;</button>
     </div>
     <div class="modal-body">
-      <p>Enter your grades for prerequisite courses(1.0 = highest, 3.0 = passing, 4.0+ = fail):</p>
+      <p>Enter your grades for courses (1.0 = highest, 3.0 = passing, 4.0+ = fail):</p>
       <div class="grade-form">
-        <div class="grade-input-group">
-          <label for="grade-CS">CS 1 - Programming Logic Formulation:</label>
-          <input type="text" id="grade-CS" class="grade-input" data-course="CS 1">
+        <div class="grade-section">
+          <h4>Programming & ICT Foundation</h4>
+          <div class="grade-input-group">
+            <label for="grade-ICT102">ICT 102 - Introduction to Computing</label>
+            <input type="text" id="grade-ICT102" class="grade-input" data-course="ICT 102" placeholder="e.g. 2.5">
+          </div>
+          <div class="grade-input-group">
+            <label for="grade-ICT103">ICT 103 - Fundamentals of Programming</label>
+            <input type="text" id="grade-ICT103" class="grade-input" data-course="ICT 103" placeholder="e.g. 2.5">
+          </div>
+          <div class="grade-input-group">
+            <label for="grade-CS">CS 1 - Programming Logic Formulation</label>
+            <input type="text" id="grade-CS" class="grade-input" data-course="CS 1" placeholder="e.g. 2.5">
+          </div>
         </div>
-        <div class="grade-input-group">
-          <label for="grade-ICT116">ICT 116 - Human Computer Interaction:</label>
-          <input type="text" id="grade-ICT116" class="grade-input" data-course="ICT 116">
+
+        <div class="grade-section">
+          <h4>ICT Advanced Courses</h4>
+          <div class="grade-input-group">
+            <label for="grade-ICT105">ICT 105 - Discrete Structure 1</label>
+            <input type="text" id="grade-ICT105" class="grade-input" data-course="ICT 105" placeholder="e.g. 2.5">
+          </div>
+          <div class="grade-input-group">
+            <label for="grade-ICT106">ICT 106 - System Fundamentals</label>
+            <input type="text" id="grade-ICT106" class="grade-input" data-course="ICT 106" placeholder="e.g. 2.5">
+          </div>
         </div>
-        <div class="grade-input-group">
-          <label for="grade-PE1">PE 1 - Movement Competency Training:</label>
-          <input type="text" id="grade-PE1" class="grade-input" data-course="PE 1">
+
+        <div class="grade-section">
+          <h4>General Education - Social Sciences</h4>
+          <div class="grade-input-group">
+            <label for="grade-GE1SS">GE 1 SS - Understanding the Self</label>
+            <input type="text" id="grade-GE1SS" class="grade-input" data-course="GE 1 SS" placeholder="e.g. 2.5">
+          </div>
+          <div class="grade-input-group">
+            <label for="grade-GE2SS">GE 2 SS - Readings in Philippine History</label>
+            <input type="text" id="grade-GE2SS" class="grade-input" data-course="GE 2 SS" placeholder="e.g. 2.5">
+          </div>
+          <div class="grade-input-group">
+            <label for="grade-GE3SS">GE 3 SS - The Contemporary World</label>
+            <input type="text" id="grade-GE3SS" class="grade-input" data-course="GE 3 SS" placeholder="e.g. 2.5">
+          </div>
+          <div class="grade-input-group">
+            <label for="grade-GE8SS">GE 8 SS - Ethics</label>
+            <input type="text" id="grade-GE8SS" class="grade-input" data-course="GE 8 SS" placeholder="e.g. 2.5">
+          </div>
         </div>
-        <div class="grade-input-group">
-          <label for="grade-GE">GE 3 SS - The Contemporary World:</label>
-          <input type="text" id="grade-GE" class="grade-input" data-course="GE 3 SS">
+
+        <div class="grade-section">
+          <h4>General Education - Communication & Math</h4>
+          <div class="grade-input-group">
+            <label for="grade-ENG3">ENG 3 - Technical Writing with Oral Communication</label>
+            <input type="text" id="grade-ENG3" class="grade-input" data-course="ENG 3" placeholder="e.g. 2.5">
+          </div>
+          <div class="grade-input-group">
+            <label for="grade-GE5ENG">GE 5 ENG - Purposive Communication</label>
+            <input type="text" id="grade-GE5ENG" class="grade-input" data-course="GE 5 ENG" placeholder="e.g. 2.5">
+          </div>
+          <div class="grade-input-group">
+            <label for="grade-GE4MATH">GE 4 MATH - Mathematics in the Modern World</label>
+            <input type="text" id="grade-GE4MATH" class="grade-input" data-course="GE 4 MATH" placeholder="e.g. 2.5">
+          </div>
         </div>
-        <div class="grade-input-group">
-          <label for="grade-ICT105">ICT 105 - Discrete Structure 1:</label>
-          <input type="text" id="grade-ICT105" class="grade-input" data-course="ICT 105">
+
+        <div class="grade-section">
+          <h4>Physical Education & NSTP</h4>
+          <div class="grade-input-group">
+            <label for="grade-PE1">PE 1 - PATHFIT 1: Movement Competency Training</label>
+            <input type="text" id="grade-PE1" class="grade-input" data-course="PE 1" placeholder="e.g. 2.5">
+          </div>
+          <div class="grade-input-group">
+            <label for="grade-PE2">PE 2 - PATHFIT 2: Exercise-Based Fitness Activities</label>
+            <input type="text" id="grade-PE2" class="grade-input" data-course="PE 2" placeholder="e.g. 2.5">
+          </div>
+          <div class="grade-input-group">
+            <label for="grade-NSTP1">NSTP 1-CWTS - NSTP 1-Civic Welfare Training Service</label>
+            <input type="text" id="grade-NSTP1" class="grade-input" data-course="NSTP 1-CWTS" placeholder="e.g. 2.5">
+          </div>
+          <div class="grade-input-group">
+            <label for="grade-NSTP2">NSTP 2-CWTS - NSTP 2-Civic Welfare Training Service</label>
+            <input type="text" id="grade-NSTP2" class="grade-input" data-course="NSTP 2-CWTS" placeholder="e.g. 2.5">
+          </div>
         </div>
-        <div class="grade-input-group">
-          <label for="grade-ICT106">ICT 106 - Discrete Structure 2:</label>
-          <input type="text" id="grade-ICT106" class="grade-input" data-course="ICT 106">
+
+        <div class="grade-section">
+          <h4>Electives</h4>
+          <div class="grade-input-group">
+            <label for="grade-GEELEC10">GE ELEC 10 - Philippine Popular Culture</label>
+            <input type="text" id="grade-GEELEC10" class="grade-input" data-course="GE ELEC 10" placeholder="e.g. 2.5">
+          </div>
         </div>
       </div>
     </div>
